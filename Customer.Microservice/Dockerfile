@@ -14,7 +14,7 @@ WORKDIR "/src"
 RUN dotnet build "Customer.Microservice/Customer.Microservice.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Customer.Microservice.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Customer.Microservice/Customer.Microservice.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
