@@ -26,11 +26,12 @@ jobs:
       - name: Build and push Docker images
         run: docker-compose -f docker-compose.yml build
 
-      - name: Push Docker images
-        run: docker-compose -f docker-compose.yml push
+      #- name: Push Docker images
+      #  run: docker-compose -f docker-compose.yml push
 
       - name: Deploy using Docker Compose
         run: docker-compose -f docker-compose.yml up -d
+
       -
         name: Build and push
         uses: docker/build-push-action@v5
