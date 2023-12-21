@@ -29,8 +29,8 @@ jobs:
       #- name: Push Docker images
       #  run: docker-compose -f docker-compose.yml push
 
-      - name: Deploy using Docker Compose
-        run: docker-compose -f docker-compose.yml up -d
+      #- name: Deploy using Docker Compose
+      #  run: docker-compose -f docker-compose.yml up -d
 
       -
         name: Build and push
