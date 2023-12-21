@@ -35,4 +35,4 @@ jobs:
           context: .
           push: true
           target: final
-          tags: ${{ secrets.DOCKER_USERNAME }}/${{ microservice_gatewayapi }}:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ microservicegatewayapi }}:latest
