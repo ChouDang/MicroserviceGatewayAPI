@@ -26,8 +26,6 @@ jobs:
       - name : Build and push Docker images
         id: docker_build
         run: docker-compose -f docker-compose.yml build
-        with:
-          target: build 
 
       #- name: Push Docker images
       #  run: docker-compose -f docker-compose.yml push
