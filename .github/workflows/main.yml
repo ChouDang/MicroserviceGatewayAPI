@@ -26,8 +26,8 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v5
         with:
-          context: ./Customer.Microservice/
-          file: Dockerfile
+          context: ${{ github.workspace }}/Customer.Microservice/
+          file: ${{ github.workspace }}/Customer.Microservice/Dockerfile
           target: build 
           load: true
       -
@@ -35,8 +35,8 @@ jobs:
         id: docker_build_2
         uses: docker/build-push-action@v5
         with:
-          context: ./Product.Microservice/
-          file: Dockerfile
+          context: ${{ github.workspace }}/Product.Microservice/
+          file: ${{ github.workspace }}/Product.Microservice/Dockerfile
           target: build 
           load: true
       -
@@ -44,8 +44,8 @@ jobs:
         id: docker_build_3
         uses: docker/build-push-action@v5
         with:
-          context: ./Gateway.API/
-          file: Dockerfile
+          context: ${{ github.workspace }}/Gateway.API/
+          file: ${{ github.workspace }}/Gateway.API/Dockerfile
           target: build 
           load: true
       -
