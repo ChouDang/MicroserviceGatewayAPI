@@ -28,9 +28,8 @@ jobs:
         with:
           context: ./MicroServices/Customer.MicroService
           file: ./MicroServices/Customer.MicroService/Dockerfile
-          target: build  # Replace 'build' with your specific build target if applicable
+          target: build 
           load: true
-          push: true
       -
         name: Build and push Docker images Customer
         id: docker_build_2
@@ -38,9 +37,8 @@ jobs:
         with:
           context: ./MicroServices/Product.MicroService
           file: ./MicroServices/Product.MicroService/Dockerfile
-          target: build  # Replace 'build' with your specific build target if applicable
+          target: build 
           load: true
-          push: true
       -
         name: Build and push Docker images Customer
         id: docker_build_3
@@ -48,9 +46,8 @@ jobs:
         with:
           context: ./Gateway.API
           file: ./Gateway.API/Dockerfile
-          target: build  # Replace 'build' with your specific build target if applicable
+          target: build 
           load: true
-          push: true    
       -
         name: Build and push
         uses: docker/build-push-action@v5
