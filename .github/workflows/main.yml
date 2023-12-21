@@ -29,7 +29,6 @@ jobs:
           context: ${{ github.workspace }}/Customer.Microservice/
           file: ${{ github.workspace }}/Customer.Microservice/Dockerfile
           target: build 
-          load: true
       -
         name: Build and push Docker images Customer
         id: docker_build_2
@@ -38,7 +37,6 @@ jobs:
           context: ${{ github.workspace }}/Product.Microservice/
           file: ${{ github.workspace }}/Product.Microservice/Dockerfile
           target: build 
-          load: true
       -
         name: Build and push Docker images Customer
         id: docker_build_3
@@ -47,7 +45,6 @@ jobs:
           context: ${{ github.workspace }}/Gateway.API/
           file: ${{ github.workspace }}/Gateway.API/Dockerfile
           target: build 
-          load: true
       -
         name: Build and push
         uses: docker/build-push-action@v5
