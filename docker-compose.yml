@@ -45,7 +45,7 @@ services:
     image: ${DOCKER_REGISTRY-}gatewayapi
     build:
       context: .
-      dockerfile: Gateway.API\Dockerfile
+      dockerfile: Gateway.API/Dockerfile
     ports:
     - "3002:80"
     networks:
