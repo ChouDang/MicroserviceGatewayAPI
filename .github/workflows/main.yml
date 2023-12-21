@@ -25,10 +25,8 @@ jobs:
 
       - name : Build and push Docker images
         id: docker_build
-        uses: docker/build-push-action@v5
+        run: docker-compose -f docker-compose.yml build
         with:
-          context: ${{ github.workspace }}/.github/workflows
-          file: docker-compose.yml
           target: build 
 
       #- name: Push Docker images
