@@ -1,4 +1,4 @@
-name: ci
+name: CI/CD with Multiple Dockerfiles
 
 on:
   push:
@@ -22,12 +22,35 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       -
-        name: Build and test
+        name: Build and push Docker images Customer
+        id: docker_build
         uses: docker/build-push-action@v5
         with:
-          context: .
-          target: build
-          load: true  
+          context: ./MicroServices/Customer.MicroService
+          file: ./MicroServices/Customer.MicroService/Dockerfile
+          target: build  # Replace 'build' with your specific build target if applicable
+          load: true
+          push: true
+      -
+        name: Build and push Docker images Customer
+        id: docker_build_2
+        uses: docker/build-push-action@v5
+        with:
+          context: ./MicroServices/Product.MicroService
+          file: ./MicroServices/Product.MicroService/Dockerfile
+          target: build  # Replace 'build' with your specific build target if applicable
+          load: true
+          push: true
+      -
+        name: Build and push Docker images Customer
+        id: docker_build_3
+        uses: docker/build-push-action@v5
+        with:
+          context: ./Gateway.API
+          file: ./Gateway.API/Dockerfile
+          target: build  # Replace 'build' with your specific build target if applicable
+          load: true
+          push: true    
       -
         name: Build and push
         uses: docker/build-push-action@v5
