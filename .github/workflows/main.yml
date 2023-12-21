@@ -22,29 +22,17 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       -
-        name: Build and push Docker images Customer
-        id: docker_build
-        uses: docker/build-push-action@v5
-        with:
-          context: ${{ github.workspace }}/Customer.Microservice/
-          file: ${{ github.workspace }}/Customer.Microservice/Dockerfile
-          target: build 
-      -
-        name: Build and push Docker images Customer
-        id: docker_build_2
-        uses: docker/build-push-action@v5
-        with:
-          context: ${{ github.workspace }}/Product.Microservice/
-          file: ${{ github.workspace }}/Product.Microservice/Dockerfile
-          target: build 
-      -
-        name: Build and push Docker images Customer
-        id: docker_build_3
-        uses: docker/build-push-action@v5
-        with:
-          context: ${{ github.workspace }}/Gateway.API/
-          file: ${{ github.workspace }}/Gateway.API/Dockerfile
-          target: build 
+        name: Set up Docker Compose CLI
+        uses: docker/compose-cli@v1
+
+      - name: Build and push Docker images
+        run: docker-compose -f docker-compose.yml build
+
+      - name: Push Docker images
+        run: docker-compose -f docker-compose.yml push
+
+      - name: Deploy using Docker Compose
+        run: docker-compose -f docker-compose.yml up -d
       -
         name: Build and push
         uses: docker/build-push-action@v5
