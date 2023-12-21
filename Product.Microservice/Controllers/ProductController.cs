@@ -53,5 +53,18 @@ namespace Product.Microservice.Controllers
             await _productsService.DeleteProduct(_id);
             return NoContent();
         }
+
+        [HttpGet("{id}/{name}")]
+        public async Task<ActionResult<Product>> GetByIdName(string _id, string _name)
+        {
+            Console.WriteLine(_name, "_name");
+            var product = await _productsService.GetProductsAsync(_id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return product;
+        }
+
     }
 }
