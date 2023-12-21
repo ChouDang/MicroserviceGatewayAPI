@@ -1,0 +1,56 @@
+version: '3.4'
+
+services:
+
+  trongmongodb:
+    image: mongodb:trong
+    ports:
+        - "27017:27017"
+    networks:
+        - custom_network
+
+  #productdb:
+  #  container_name: productdb
+  #  restart: always
+  #  ports:
+  #      - "27017:27017"
+  #  volumes:
+  #      - mongo_data:/data/db 
+
+  customer.microservice:
+    container_name: customer-api
+    image: ${DOCKER_REGISTRY-}customermicroservice
+    build:
+      context: .
+      dockerfile: Customer.Microservice/Dockerfile
+    environment:
+        MONGO_URL: mongodb://192.168.224.4:27017
+    ports:
+        - "4201:80"
+    networks:
+        - custom_network
+
+  product.microservice:
+    container_name: product-api
+    image: ${DOCKER_REGISTRY-}productmicroservice
+    build:
+      context: .
+      dockerfile: Product.Microservice/Dockerfile
+    ports:
+       - "4202:80"
+    networks:
+        - custom_network
+
+  gateway.api:
+    image: ${DOCKER_REGISTRY-}gatewayapi
+    build:
+      context: .
+      dockerfile: Gateway.API\Dockerfile
+    ports:
+    - "3002:80"
+    networks:
+        - custom_network
+
+networks:
+  custom_network:
+    driver: bridge
