@@ -3,6 +3,8 @@ version: '3.4'
 services:
 
   trongmongodb:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     container_name: trongmongodb
     restart: always
     ports:
