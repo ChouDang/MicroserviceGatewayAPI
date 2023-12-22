@@ -19,7 +19,7 @@ services:
 
   customer.microservice:
     container_name: customer-api
-    image: ${DOCKER_REGISTRY-}customermicroservice
+    image: choudang/customermicroservice
     build:
       context: .
       dockerfile: Customer.Microservice/Dockerfile
@@ -32,7 +32,7 @@ services:
 
   product.microservice:
     container_name: product-api
-    image: ${DOCKER_REGISTRY-}productmicroservice
+    image: choudang/productmicroservice
     build:
       context: .
       dockerfile: Product.Microservice/Dockerfile
@@ -42,7 +42,7 @@ services:
         - custom_network
 
   gateway.api:
-    image: ${DOCKER_REGISTRY-}gatewayapi
+    image: choudang/gatewayapi
     build:
       context: .
       dockerfile: Gateway.API/Dockerfile
