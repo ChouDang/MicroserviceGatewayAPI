@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   customer.microservice:
-    image: customermicroservice:dev
+    image: choudang/customermicroservice:dev
     build:
       target: base
       labels:
@@ -28,7 +28,7 @@ services:
       com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
     tty: true
   gateway.api:
-    image: gatewayapi:dev
+    image: choudang/gatewayapi:dev
     container_name: Gateway.API
     build:
       target: base
@@ -56,7 +56,7 @@ services:
     tty: true
 
   product.microservice:
-    image: productmicroservice:dev
+    image: choudang/productmicroservice:dev
     build:
       target: base
       labels:
