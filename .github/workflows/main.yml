@@ -27,17 +27,17 @@ jobs:
         id: docker_build
         run: docker-compose -f docker-compose.yml build
 
-      #- name: Push Docker images
-      #  run: docker-compose -f docker-compose.yml push
+      - name: Push Docker images
+        run: docker-compose -f docker-compose.yml push
 
-      #- name: Deploy using Docker Compose
-      #  run: docker-compose -f docker-compose.yml up -d
+      - name: Deploy using Docker Compose
+        run: docker-compose -f docker-compose.yml up -d
 
       -
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: . .
+          context: .
           push: true
           target: final
           tags: ${{ secrets.DOCKER_USERNAME }}/micro-gateway:latest
