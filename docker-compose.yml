@@ -3,7 +3,7 @@ version: '3.4'
 services:
 
   trongmongodb:
-    image: mongodb:trong
+    image: choudang/mongodb:trong
     ports:
         - "27017:27017"
     networks:
