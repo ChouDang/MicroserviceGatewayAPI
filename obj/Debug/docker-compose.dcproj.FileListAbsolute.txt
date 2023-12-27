@@ -44,3 +44,11 @@ C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\bin\Debug\Product.Micr
 C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\obj\Debug\docker-compose.dcproj.CopyComplete
+C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\bin\Debug\MassTransit.RabbitMqTransport.dll
+C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\bin\Debug\MassTransit.dll
+C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\bin\Debug\MassTransit.Abstractions.dll
+C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\bin\Debug\RabbitMQ.Client.dll
+C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\bin\Debug\System.Threading.Channels.dll
+C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\bin\Debug\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+C:\Users\Admin\Desktop\BE ConsoleApp\Microservices.WebApi\bin\Debug\Microsoft.Extensions.Diagnostics.HealthChecks.dll

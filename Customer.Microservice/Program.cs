@@ -4,6 +4,8 @@ using Microsoft.OpenApi.Models;
 using Customer.Microservice.Models;
 using MongoDB.Driver;
 using Ocelot.Values;
+using MassTransit;
+using Customer.Microservice.RabbitMQ;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,9 +17,24 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IMongoClient, MongoClient>();
 builder.Services.Configure<CustomerDatabaseSettings>(
     builder.Configuration.GetSection("Database"));
-
 builder.Services.AddSingleton<CustomersService>();
 
+// Configure RabbitMQ
+//builder.Services.AddScoped<IRabbitMQCustomer, RabbitMQCustomer>();
+builder.Services.AddMassTransit(x =>
+{
+    x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("customer", false));
+    // Setup RabbitMQ Endpoint
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(builder.Configuration["RabbitMq:Host"], "/", host =>
+        {
+            host.Username(builder.Configuration.GetValue("RabbitMq:Username", "guest"));
+            host.Password(builder.Configuration.GetValue("RabbitMq:Password", "guest"));
+        });
+        cfg.ConfigureEndpoints(context);
+    });
+});
 
 var app = builder.Build();
 

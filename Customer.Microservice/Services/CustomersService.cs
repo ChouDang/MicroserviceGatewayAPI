@@ -16,6 +16,7 @@ namespace Customer.Microservice.Services
         public async Task<List<Customer>> GetCustomersAsync()
         {
             List<Customer> customer = await _customerCollection.Find(_ => true).ToListAsync();
+            var check = customer;
             return customer;
         }
         public async Task<Customer?> GetCustomersAsync(string id) => await _customerCollection.Find(x => x.Id == id).FirstOrDefaultAsync();

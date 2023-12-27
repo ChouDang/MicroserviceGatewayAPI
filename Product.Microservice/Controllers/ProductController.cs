@@ -4,6 +4,7 @@ using Product.Microservice.Services;
 
 namespace Product.Microservice.Controllers
 {
+    using MassTransit;
     using Product.Microservice.Models;
 
     [Route("api/[controller]")]
@@ -12,19 +13,27 @@ namespace Product.Microservice.Controllers
     {
 
         private readonly ProductsServices _productsService;
-        public ProductController(ProductsServices productsService) => _productsService = productsService;
+        private readonly IPublishEndpoint _publishEndpoint;
+
+        public ProductController(ProductsServices productsService, IPublishEndpoint publishEndpoint) 
+        {
+            _productsService = productsService;
+            _publishEndpoint = publishEndpoint;
+        }
 
         [HttpGet]
         public async Task<List<Product>> Get() => await _productsService.GetProductsAsync();
 
         [HttpGet("{id:length(24)}")]
-        public async Task<ActionResult<Product>> Get(string _id)
+        public async Task<ActionResult<Product>> GetById(string id)
         {
-           var product = await _productsService.GetProductsAsync(_id);
+           var product = await _productsService.GetProductsAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
+            var eventMessage = product;
+            await _publishEndpoint.Publish<Product>(eventMessage);
             return product;
         }
 

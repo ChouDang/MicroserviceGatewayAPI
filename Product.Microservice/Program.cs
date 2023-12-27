@@ -1,5 +1,7 @@
+using MassTransit;
 using MongoDB.Driver;
 using Product.Microservice.Models;
+using Product.Microservice.RabbitMQ;
 using Product.Microservice.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,22 @@ builder.Services.AddSingleton<IMongoClient, MongoClient>();
 builder.Services.Configure<ProductDatabaseSettings>(
     builder.Configuration.GetSection("Database"));
 builder.Services.AddSingleton<ProductsServices>();
+
+//builder.Services.AddScoped<IRabbitMQProduct, RabbitMQProduct>();
+builder.Services.AddMassTransit(x =>
+{
+    x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("product", false));
+    // Setup RabbitMQ Endpoint
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(builder.Configuration["RabbitMq:Host"], "/", host =>
+        {
+            host.Username(builder.Configuration.GetValue("RabbitMq:Username", "guest"));
+            host.Password(builder.Configuration.GetValue("RabbitMq:Password", "guest"));
+        });
+        cfg.ConfigureEndpoints(context);
+    });
+});
 
 
 var app = builder.Build();

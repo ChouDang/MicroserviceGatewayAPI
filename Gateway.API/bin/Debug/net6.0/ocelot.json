@@ -6,7 +6,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "customer-api",
+          "Host": "customer-api", //"localhost" ,// "customer-api",
           "Port": 80
         }
       ],
@@ -18,12 +18,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "customer-api",
+          "Host": "customer-api", //"localhost", //"customer-api",
           "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/Customer/{id}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
 
     // Product API
@@ -32,11 +32,23 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "product-api",
+          "Host": "product-api", //"localhost", // "product-api",
           "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/Product",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Product/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "product-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Product/{id}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     }
   ],
