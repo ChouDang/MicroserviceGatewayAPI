@@ -20,6 +20,7 @@ namespace Customer.Microservice.Controllers
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<Customer>> Get(string id)
         {
+            Console.WriteLine("AAAA");
             var customers = await _customersService.GetCustomersAsync(id);
             if (customers == null)
                 return NotFound();
